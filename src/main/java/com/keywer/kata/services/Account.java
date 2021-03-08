@@ -1,6 +1,5 @@
 package com.keywer.kata.services;
 
-import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -33,6 +32,18 @@ public class Account {
 
     synchronized public BigDecimal deposit(BigDecimal amount){
         balance = balance.add(amount);
+
+        operations.add()
         return balance;
     }
+
+    synchronized public BigDecimal withdrawal(BigDecimal amount) throws OperationInvalidException {
+        if( amount.doubleValue() > balance.doubleValue())
+            throw new OperationInvalidException("Withdraw Problem");
+
+        balance = balance.subtract(amount);
+        return balance;
+    }
+
+
 }
