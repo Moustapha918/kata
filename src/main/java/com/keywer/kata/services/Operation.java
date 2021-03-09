@@ -6,12 +6,16 @@ import java.time.LocalDateTime;
 public class Operation {
 
     private BigDecimal amount;
-    private String operationType;
+    private OperationType operationType;
     private LocalDateTime date;
 
-    public void saveDeposit(BigDecimal amount){
 
+    public OperationType getOperationType() {
+        return operationType;
+    }
 
+    public void setOperationType(OperationType operationType) {
+        this.operationType = operationType;
     }
 
     public BigDecimal getAmount() {
@@ -20,14 +24,6 @@ public class Operation {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
-    }
-
-    public String getOperationType() {
-        return operationType;
-    }
-
-    public void setOperationType(String operationType) {
-        this.operationType = operationType;
     }
 
     public LocalDateTime getDate() {

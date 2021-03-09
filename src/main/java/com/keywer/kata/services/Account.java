@@ -2,6 +2,7 @@ package com.keywer.kata.services;
 
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -32,8 +33,7 @@ public class Account {
 
     synchronized public BigDecimal deposit(BigDecimal amount){
         balance = balance.add(amount);
-
-        operations.add()
+        saveOperation(amount, OperationType.DEPOSIT);
         return balance;
     }
 
@@ -42,8 +42,18 @@ public class Account {
             throw new OperationInvalidException("Withdraw Problem");
 
         balance = balance.subtract(amount);
+        saveOperation(amount, OperationType.WITHDRAWAL);
+
         return balance;
     }
 
+
+    public void saveOperation(BigDecimal amount, OperationType operationType){
+        Operation operation = new Operation();
+        operation.setAmount(amount);
+        operation.setOperationType(operationType);
+        operation.setDate(LocalDateTime.now());
+        operations.add(operation);
+    }
 
 }
