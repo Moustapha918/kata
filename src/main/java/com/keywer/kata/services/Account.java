@@ -12,6 +12,7 @@ public class Account {
 
     List<Operation> operations;
 
+
     public Account() {
     }
 

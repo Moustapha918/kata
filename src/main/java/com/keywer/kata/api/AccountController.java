@@ -21,18 +21,16 @@ public class AccountController {
 
     @PostMapping(path = "/api/deposit", consumes = "application/json",
             produces = "application/json")
-    public Account deposit(@RequestBody Amount amount){
+    public void deposit(@RequestBody Amount amount){
 
         this.account.deposit(amount.getAmount());
-        return account;
     }
 
     @PostMapping(path = "/api/withdrawal", consumes = "application/json",
             produces = "application/json")
-    public Account withdrawal(@RequestBody Amount amount){
+    public void withdrawal(@RequestBody Amount amount){
         try{
             this.account.withdrawal(amount.getAmount());
-            return account;
         } catch (OperationInvalidException ex){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage(), ex);
 
@@ -41,9 +39,9 @@ public class AccountController {
 
     @GetMapping(path = "/api/statment", consumes = "application/json",
             produces = "application/json")
-    public List<Operation> getStatement(){
+    public Account getStatement(){
 
-        return account.getOperations();
+        return account;
 
     }
 
